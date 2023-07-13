@@ -1,0 +1,77 @@
+fileFormatVersion: 2
+guid: 90258ff659082db41a5f1498bd66a213
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst __UnityEngine__ = require(\\\"UnityEngine\\\");\\r\\nconst
+    ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst ZEPETO_Character_Controller_1
+    = require(\\\"ZEPETO.Character.Controller\\\");\\r\\nconst UnityEngine = require(\\\"UnityEngine\\\");\\r\\nconst
+    UnityEngine_UI_1 = require(\\\"UnityEngine.UI\\\");\\r\\nconst ClientStarter2_1
+    = require(\\\"./ClientStarter2\\\");\\r\\nconst TS_ZombieController_1 = require(\\\"./TS_ZombieController\\\");\\r\\nclass
+    TS_BulletController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n   
+    constructor() {\\r\\n        super(...arguments);\\r\\n        this.shootDistance
+    = 5; // \uCD1D\uC54C \uC0AC\uAC70\uB9AC\\r\\n        this.shootDamge = 5; //
+    \uCD1D \uB370\uBBF8\uC9C0\\r\\n        this.publicShootbulletNum = 4; // \uC778
+    \uB2F9 \uC3E0 \uC218 \uC788\uB294 \uCD1D\uC54C \uAC2F\uC218\\r\\n        this.currentShootbulletNum
+    = 0; // \uD604\uC7AC \uD50C\uB808\uC774\uC5B4\uAC00 \uC3DC \uCD1D\uC54C\uC758
+    \uAC2F\uC218\\r\\n    }\\r\\n    static GetInstance() {\\r\\n        if (!TS_BulletController.Instance)
+    {\\r\\n            const targetObj = UnityEngine.GameObject.Find(\\\"BulletController\\\");\\r\\n           
+    if (targetObj) {\\r\\n                TS_BulletController.Instance = targetObj.GetComponent($typeof(TS_BulletController));\\r\\n           
+    }\\r\\n        }\\r\\n        return TS_BulletController.Instance;\\r\\n    }\\r\\n   
+    Start() {\\r\\n        this.ChangeBallNumUI();\\r\\n    }\\r\\n    // \uCD1D\uC54C
+    \uBC1C\uC0AC\uD560\uC9C0 \uB9D0\uC9C0 \uD310\uB2E8\uD558\uC5EC \uB370\uBBF8\uC9C0
+    \uC785\uD788\uB294 \uD568\uC218\\r\\n    CheakShootBall() {\\r\\n        if (this.currentShootbulletNum
+    < this.publicShootbulletNum) {\\r\\n            const myPlayer = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer;\\r\\n           
+    // \uC790\uB3D9 \uD0C0\uCF13\uD305\\r\\n            let findTarget = null; //
+    \uD0C0\uAE43 \uC624\uBE0C\uC81D\uD2B8\\r\\n            let findTargetIndex =
+    0; // \uD0C0\uAE43 \uC624\uBE0C\uC81D\uD2B8 \uBC88\uD638\\r\\n            let
+    findTargetHP = 0; // \uD0C0\uAE43 \uC624\uBE0C\uC81D\uD2B8 hp\\r\\n           
+    //console.log(`autoTargeting find all Zombie`);\\r\\n            // \uD50C\uB808\uC774\uC5B4
+    \uC8FC\uBCC0 \uAC1D\uCCB4\uB85C\uBD80\uD130 \uC81C\uC77C \uAC00\uAE4C\uC6B4 \uC880\uBE44
+    \uCC3E\uAE30\\r\\n            let checkDistance = this.shootDistance;\\r\\n           
+    for (let i = 0; i < TS_ZombieController_1.default.GetInstance().ZombieTS.length;
+    i++) {\\r\\n                let zombieTS = TS_ZombieController_1.default.GetInstance().ZombieTS[i];\\r\\n               
+    if (zombieTS.isDead == false) {\\r\\n                    //console.log(`autoTargeting
+    find near Zombie`);\\r\\n                    let currentDistance = UnityEngine.Vector3.Distance(zombieTS.gameObject.transform.position,
+    myPlayer.character.transform.position);\\r\\n                    if (currentDistance
+    < this.shootDistance && currentDistance < checkDistance) {\\r\\n                       
+    findTargetIndex = zombieTS.index;\\r\\n                        findTargetHP =
+    zombieTS.hp;\\r\\n                        findTarget = zombieTS.gameObject;\\r\\n                       
+    checkDistance = currentDistance;\\r\\n                    }\\r\\n               
+    }\\r\\n            }\\r\\n            // \uAC00\uAE4C\uC6B4 \uC880\uBE44\uAC00
+    \uC788\uC73C\uBA74 \uD574\uB2F9 \uC880\uBE44\uC758 \uC778\uB371\uC2A4 \uAC12,
+    \uAE4E\uC778 hp \uC11C\uBC84\uC5D0 \uC804\uB2EC\\r\\n            if (__UnityEngine__.Object.op_Inequality(findTarget,
+    null)) {\\r\\n                this.currentShootbulletNum++;\\r\\n               
+    this.ChangeBallNumUI();\\r\\n                //console.log(`autoTargeting find
+    near Zombie Shoot`);\\r\\n                myPlayer.character.transform.LookAt(findTarget.transform);\\r\\n               
+    ClientStarter2_1.default.GetInstance().ChangeZombieHP(findTargetIndex, findTargetHP
+    - this.shootDamge);\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n    //
+    \uD0C4\uC57D \uCC44\uC6B0\uAE30\\r\\n    FillBall() {\\r\\n        this.currentShootbulletNum
+    = 0;\\r\\n        this.ChangeBallNumUI();\\r\\n    }\\r\\n    // canvas bullet
+    num text ui change\\r\\n    ChangeBallNumUI() {\\r\\n        this.bulletUIText.GetComponent($typeof(UnityEngine_UI_1.Text)).text
+    = \\\"\uB0A8\uC740 \uD0C4\uC57D \uAC2F\uC218 : \\\" + (this.publicShootbulletNum
+    - this.currentShootbulletNum).toString();\\r\\n    }\\r\\n    // \uCD1D \uB370\uBBF8\uC9C0
+    \uC5C5\uADF8\uB808\uC774\uB4DC\\r\\n    UpgradeDamge() {\\r\\n        this.shootDamge
+    = this.shootDamge + 5;\\r\\n    }\\r\\n    // \uD0C4\uC57D \uC218 \uC5C5\uADF8\uB808\uC774\uB4DC\\r\\n   
+    UpgradePublicShootbulletNum() {\\r\\n        this.publicShootbulletNum = this.publicShootbulletNum
+    + 4;\\r\\n    }\\r\\n}\\r\\nexports.default = TS_BulletController;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVFNfQnVsbGV0Q29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlRTX0J1bGxldENvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUEsaURBQXFEO0FBQ3JELDZFQUE0RDtBQUM1RCwyQ0FBMEM7QUFDMUMsbURBQXNDO0FBQ3RDLHFEQUE4QztBQUM5QywrREFBd0Q7QUFHeEQsTUFBcUIsbUJBQW9CLFNBQVEscUNBQXFCO0lBQXRFOztRQVFXLGtCQUFhLEdBQVksQ0FBQyxDQUFDLENBQUMsU0FBUztRQUNyQyxlQUFVLEdBQVksQ0FBQyxDQUFDLENBQUMsUUFBUTtRQUNqQyx5QkFBb0IsR0FBWSxDQUFDLENBQUMsQ0FBQyxtQkFBbUI7UUFDckQsMEJBQXFCLEdBQVksQ0FBQyxDQUFDLENBQUMsb0JBQW9CO0lBNkVwRSxDQUFDO0lBM0VVLE1BQU0sQ0FBQyxXQUFXO1FBQ3JCLElBQUcsQ0FBQyxtQkFBbUIsQ0FBQyxRQUFRLEVBQUM7WUFDN0IsTUFBTSxTQUFTLEdBQUcsV0FBVyxDQUFDLFVBQVUsQ0FBQyxJQUFJLENBQUMsa0JBQWtCLENBQUMsQ0FBQztZQUNsRSxJQUFHLFNBQVMsRUFBQztnQkFDVCxtQkFBbUIsQ0FBQyxRQUFRLEdBQUcsU0FBUyxDQUFDLFlBQVksU0FBQyxtQkFBbUIsRUFBRyxDQUFDO2FBQ2hGO1NBQ0o7UUFDRCxPQUFPLG1CQUFtQixDQUFDLFFBQVEsQ0FBQztJQUN4QyxDQUFDO0lBRUQsS0FBSztRQUNELElBQUksQ0FBQyxlQUFlLEVBQUUsQ0FBQztJQUMzQixDQUFDO0lBRUQsNkJBQTZCO0lBQzdCLGNBQWM7UUFDVixJQUFHLElBQUksQ0FBQyxxQkFBcUIsR0FBRyxJQUFJLENBQUMsb0JBQW9CLEVBQUM7WUFDdEQsTUFBTSxRQUFRLEdBQUcsMkNBQWEsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFDLFlBQVksQ0FBQztZQUVqRSxTQUFTO1lBQ1QsSUFBSSxVQUFVLEdBQTRCLElBQUksQ0FB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\",\"assetPath\":\"Assets/Script/Test/TS_BulletController.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"UnityEngine.UI\",\"name\":\"bulletUIText\",\"type\":\"UnityEngine.UI.Text\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"Header\",\"args\":[\"\\\"Ball
+    UI\\\"\"]}]},{\"assembly\":\"mscorlib\",\"name\":\"shootDistance\",\"type\":\"System.Single\",\"isArray\":false,\"initValue\":[\"5\"],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"Header\",\"args\":[\"\\\"Ball
+    Managerment\\\"\"]}]},{\"assembly\":\"mscorlib\",\"name\":\"shootDamge\",\"type\":\"System.Single\",\"isArray\":false,\"initValue\":[\"5\"],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"publicShootbulletNum\",\"type\":\"System.Single\",\"isArray\":false,\"initValue\":[\"4\"],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"TS_BulletController\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 8f714304e1bc2a393c72ae2383463660
+  onlyWriteTrigger: 0

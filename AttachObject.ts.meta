@@ -1,0 +1,35 @@
+fileFormatVersion: 2
+guid: 326e5259aab6539448323cefbe056b21
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    ZEPETO_Character_Controller_1 = require(\"ZEPETO.Character.Controller\");\r\nconst
+    UnityEngine_1 = require(\"UnityEngine\");\r\nconst UnityEngine = require(\"UnityEngine\");\r\nclass
+    AttachObject extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    static GetInstance()
+    {\r\n        if (!AttachObject.Instance) {\r\n            const targetObj = UnityEngine.GameObject.Find(\"AttachController\");\r\n           
+    if (targetObj) {\r\n                AttachObject.Instance = targetObj.GetComponent($typeof(AttachObject));\r\n           
+    }\r\n        }\r\n        return AttachObject.Instance;\r\n    }\r\n    Start()
+    {\r\n        ZEPETO_Character_Controller_1.ZepetoPlayers.instance.OnAddedLocalPlayer.AddListener(()
+    => {\r\n            this._localCharacter = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character;\r\n       
+    });\r\n    }\r\n    AttachGunPlayer(animator) {\r\n        const bone = animator.GetBoneTransform(this.bodyBone);\r\n       
+    UnityEngine_1.Object.Instantiate(this.Gun1, bone);\r\n    }\r\n}\r\nexports.default
+    = AttachObject;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQXR0YWNoT2JqZWN0LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiQXR0YWNoT2JqZWN0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsaURBQXNEO0FBQ3RELDZFQUE2RTtBQUM3RSw2Q0FBc0Y7QUFDdEYsMkNBQTBDO0FBRTFDLE1BQXFCLFlBQWEsU0FBUSxxQ0FBcUI7SUFXcEQsTUFBTSxDQUFDLFdBQVc7UUFDckIsSUFBRyxDQUFDLFlBQVksQ0FBQyxRQUFRLEVBQUM7WUFDdEIsTUFBTSxTQUFTLEdBQUcsV0FBVyxDQUFDLFVBQVUsQ0FBQyxJQUFJLENBQUMsa0JBQWtCLENBQUMsQ0FBQztZQUNsRSxJQUFHLFNBQVMsRUFBQztnQkFDVCxZQUFZLENBQUMsUUFBUSxHQUFHLFNBQVMsQ0FBQyxZQUFZLFNBQUMsWUFBWSxFQUFHLENBQUM7YUFDbEU7U0FDSjtRQUNELE9BQU8sWUFBWSxDQUFDLFFBQVEsQ0FBQztJQUNqQyxDQUFDO0lBRUQsS0FBSztRQUNELDJDQUFhLENBQUMsUUFBUSxDQUFDLGtCQUFrQixDQUFDLFdBQVcsQ0FBQyxHQUFHLEVBQUU7WUFDdkQsSUFBSSxDQUFDLGVBQWUsR0FBRywyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUMsWUFBWSxDQUFDLFNBQVMsQ0FBQztRQUNyRixDQUFDLENBQUMsQ0FBQztJQUNQLENBQUM7SUFFRCxlQUFlLENBQUMsUUFBa0I7UUFDOUIsTUFBTSxJQUFJLEdBQWMsUUFBUSxDQUFDLGdCQUFnQixDQUFDLElBQUksQ0FBQyxRQUFRLENBQUMsQ0FBQztRQUNqRSxvQkFBTSxDQUFDLFdBQVcsQ0FBQyxJQUFJLENBQUMsSUFBSSxFQUFFLElBQUksQ0FBZSxDQUFDO0lBQ3RELENBQUM7Q0FDSjtBQS9CRCwrQkErQkMifQ==","assetPath":"Assets/Script/AttachObject.ts","manifest":{"properties":[{"assembly":"UnityEngine.CoreModule","name":"Gun1","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.AnimationModule","name":"bodyBone","type":"UnityEngine.HumanBodyBones","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"AttachObject","description":"","hasAnimatorMove":false},"isCompiled":true}'
+  typescriptHash: 4cbb44495dc8573b121f43d2f416a29e
+  onlyWriteTrigger: 0

@@ -1,0 +1,9 @@
+{
+"State" : {"players" : {"map" : "Player"},"ZombiesData" : {"map" : "ZombieData"}},
+"Vector3" : {"x" : "number","y" : "number","z" : "number"},
+"Transform" : {"position" : "Vector3","rotation" : "Vector3"},
+"Player" : {"sessionId" : "string","zepetoHash" : "string","zepetoUerId" : "string","transform" : "Transform","state" : "number","stat" : "Stat","isHost" : "boolean","subState" : "number"},
+"Stat" : {"speed" : "number","jump" : "number","power" : "number","coin" : "number"},
+"ZombieData" : {"index" : "number","position" : "Vector3","rotation" : "Vector3","hp" : "number","moveState" : "number"},
+"Rotation" : {"x" : "number","y" : "number","z" : "number","w" : "number"}
+}

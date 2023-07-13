@@ -1,0 +1,44 @@
+fileFormatVersion: 2
+guid: 38779be3ff020864b93839118c02bb9d
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst TS_Energy_1 = require(\\\"./TS_Energy\\\");\\r\\nclass
+    TS_EnergyController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n   
+    constructor() {\\r\\n        super(...arguments);\\r\\n        this.Energies
+    = []; // \uC5D0\uB108\uC9C0 \uAC74\uBB3C \uAC8C\uC784 \uC624\uBE0C\uC81D\uD2B8
+    \uAC1D\uCCB4\\r\\n        this.isEnergyBroken = []; // \uC5D0\uB108\uC9C0 \uAC74\uBB3C\uC774
+    \uBD80\uC11C\uC84C\uB294\uAC00?\\r\\n        this.EnergyTS = []; // \uC5D0\uB108\uC9C0
+    \uAC74\uBB3C \uC2A4\uD06C\uB9BD\uD2B8 \uBC30\uC5F4\\r\\n    }\\r\\n    static
+    GetInstance() {\\r\\n        if (!TS_EnergyController.Instance) {\\r\\n           
+    const targetObj = UnityEngine_1.GameObject.Find(\\\"EnergyController\\\");\\r\\n           
+    if (targetObj) {\\r\\n                TS_EnergyController.Instance = targetObj.GetComponent($typeof(TS_EnergyController));\\r\\n           
+    }\\r\\n        }\\r\\n        return TS_EnergyController.Instance;\\r\\n    }\\r\\n   
+    Start() {\\r\\n        this.EnergyTS = [];\\r\\n        // \uCC98\uC74C\uC5D0
+    \uBC30\uC5F4\uC5D0 \uCD94\uAC00\\r\\n        for (let index = 0; index < this.Energies.length;
+    index++) {\\r\\n            let energyTs = this.Energies[index].GetComponent($typeof(TS_Energy_1.default));\\r\\n           
+    energyTs.index = index;\\r\\n            this.EnergyTS.push(energyTs);\\r\\n           
+    this.isEnergyBroken.push(false);\\r\\n        }\\r\\n    }\\r\\n    // \uB370\uBBF8\uC9C0\uB97C
+    \uC785\uC5B4\uC11C hp\uAC00 \uBC14\uB014 \uB54C \\r\\n    ChangeEnergyHP(index,
+    hp) {\\r\\n        //if(hp <= 0) this.isEnergyBroken[index] = true;\\r\\n       
+    this.EnergyTS[index].SetHp(hp);\\r\\n    }\\r\\n}\\r\\nexports.default = TS_EnergyController;\\r\\n//#
+    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVFNfRW5lcmd5Q29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlRTX0VuZXJneUNvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBd0M7QUFDeEMsaURBQXFEO0FBQ3JELDJDQUFvQztBQUVwQyxNQUFxQixtQkFBb0IsU0FBUSxxQ0FBcUI7SUFBdEU7O1FBR1csYUFBUSxHQUFrQixFQUFFLENBQUMsQ0FBQyxvQkFBb0I7UUFDbEQsbUJBQWMsR0FBZSxFQUFFLENBQUMsQ0FBQyxpQkFBaUI7UUFDbEQsYUFBUSxHQUFpQixFQUFFLENBQUMsQ0FBQyxpQkFBaUI7SUE4QnpELENBQUM7SUEzQlUsTUFBTSxDQUFDLFdBQVc7UUFDckIsSUFBRyxDQUFDLG1CQUFtQixDQUFDLFFBQVEsRUFBQztZQUM3QixNQUFNLFNBQVMsR0FBRyx3QkFBVSxDQUFDLElBQUksQ0FBQyxrQkFBa0IsQ0FBQyxDQUFDO1lBQ3RELElBQUcsU0FBUyxFQUFDO2dCQUNULG1CQUFtQixDQUFDLFFBQVEsR0FBRyxTQUFTLENBQUMsWUFBWSxTQUFDLG1CQUFtQixFQUFHLENBQUM7YUFDaEY7U0FDSjtRQUNELE9BQU8sbUJBQW1CLENBQUMsUUFBUSxDQUFDO0lBQ3hDLENBQUM7SUFFRCxLQUFLO1FBQ0QsSUFBSSxDQUFDLFFBQVEsR0FBRyxFQUFFLENBQUM7UUFDbkIsYUFBYTtRQUNiLEtBQUssSUFBSSxLQUFLLEdBQUcsQ0FBQyxFQUFFLEtBQUssR0FBRyxJQUFJLENBQUMsUUFBUSxDQUFDLE1BQU0sRUFBRSxLQUFLLEVBQUUsRUFBRTtZQUN2RCxJQUFJLFFBQVEsR0FBZSxJQUFJLENBQUMsUUFBUSxDQUFDLEtBQUssQ0FBQyxDQUFDLFlBQVksU0FBQyxtQkFBUyxFQUFHLENBQUM7WUFDMUUsUUFBUSxDQUFDLEtBQUssR0FBRyxLQUFLLENBQUM7WUFDdkIsSUFBSSxDQUFDLFFBQVEsQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLENBQUM7WUFDN0IsSUFBSSxDQUFDLGNBQWMsQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDLENBQUM7U0FDbkM7SUFDTCxDQUFDO0lBRUQscUJBQXFCO0lBQ3JCLGNBQWMsQ0FBQyxLQUFjLEVBQUUsRUFBVztRQUV0QyxnREFBZ0Q7UUFDaEQsSUFBSSxDQUFDLFFBQVEsQ0FBQyxLQUFLLENBQUMsQ0FBQyxLQUFLLENBQUMsRUFBRSxDQUFDLENBQUM7SUFDbkMsQ0FBQztDQUNKO0FBbkNELHNDQW1DQyJ9\",\"assetPath\":\"Assets/Script/Test/TS_EnergyController.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"Energies\",\"type\":\"UnityEngine.GameObject[]\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"Header\",\"args\":[\"\\\"Energy\\\"\"]}]},{\"assembly\":\"mscorlib\",\"name\":\"isEnergyBroken\",\"type\":\"System.Boolean[]\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"\",\"name\":\"EnergyTS\",\"type\":\"C:/Users/user/Desktop/ZepetoNPCMuti/ZepetoMuti/Assets/Script/Test/TS_Energy.default\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"TS_EnergyController\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 4c9d36e72faebd8f8063f11f44a957ac
+  onlyWriteTrigger: 0

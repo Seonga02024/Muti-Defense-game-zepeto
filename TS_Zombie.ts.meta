@@ -1,0 +1,95 @@
+fileFormatVersion: 2
+guid: 625401591c370ee47b0aa55297a51de9
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst __UnityEngine__ = require(\\\"UnityEngine\\\");\\r\\nconst
+    ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst UnityEngine = require(\\\"UnityEngine\\\");\\r\\nconst
+    ClientStarter2_1 = require(\\\"./ClientStarter2\\\");\\r\\nconst UnityEngine_AI_1
+    = require(\\\"UnityEngine.AI\\\");\\r\\nconst TS_EnergyController_1 = require(\\\"./TS_EnergyController\\\");\\r\\nconst
+    TS_ZombieController_1 = require(\\\"./TS_ZombieController\\\");\\r\\nclass TS_Zombie
+    extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor() {\\r\\n       
+    super(...arguments);\\r\\n        this.maxHP = 10; // \uD574\uB2F9 \uC880\uBE44\uC758
+    max hp\\r\\n        this.hp = 10; // \uD574\uB2F9 \uC880\uBE44\uC758 hp\\r\\n       
+    this.isDead = false; // \uC8FD\uC5C8\uB294\uC9C0 \uC544\uB2CC\uC9C0\\r\\n       
+    this.isAttack = false; // \uACF5\uACA9\uD558\uB294\uC9C0 \uC544\uB2CC\uC9C0\\r\\n       
+    this.speed = 5; // \uC2A4\uD53C\uB4DC\\r\\n        this.index = 0; // \uBC88\uD638\\r\\n       
+    this.damge = 1; // \uACF5\uACA9 \uB370\uBBF8\uC9C0\\r\\n        this.attackDis
+    = 3.5; // \uACF5\uACA9 \uC0AC\uAC70\uB9AC\\r\\n        this.hasTarget = false;
+    // \uD0C0\uAE43\uC774 \uC788\uB294\uC9C0 - \uD638\uC2A4\uD2B8\\r\\n        this.targetPlayerNum
+    = 0; // \uD0C0\uAE43\uC774 \uBD80\uC11C\uC84C\uB294\uC9C0 \uD655\uC778\uD560
+    \uB54C \uC0AC\uC6A9\\r\\n        this.getPlayerData = false; // \uD0C0\uAE43
+    \uC5EC\uBD80 - \uD638\uC2A4\uD2B8 \uC544\uB2D0\uC2DC\\r\\n    }\\r\\n    Awake()
+    {\\r\\n        this.pathFinder = this.GetComponent($typeof(UnityEngine_AI_1.NavMeshAgent));\\r\\n       
+    this.hp = this.maxHP;\\r\\n        this.isDead = false;\\r\\n        this.hpSlider.maxValue
+    = this.hp;\\r\\n    }\\r\\n    Vector3MultiplyByNumber(Vec3, Num) {\\r\\n       
+    return new UnityEngine.Vector3(Vec3.x * Num, Vec3.y * Num, Vec3.z * Num);\\r\\n   
+    }\\r\\n    Update() {\\r\\n        // \uAC8C\uC784 \uC2DC\uC791\uD588\uB2E4\uBA74\\r\\n       
+    if (ClientStarter2_1.default.GetInstance().isGameStart == true) {\\r\\n           
+    let isHost = ClientStarter2_1.default.GetInstance().player.isHost;\\r\\n           
+    // \uD638\uC2A4\uD2B8\uC774\uACE0 \uC544\uC9C1 \uC548 \uC8FD\uC5C8\uB2E4\uBA74\\r\\n           
+    if (isHost == true && this.isDead == false) {\\r\\n                if (__UnityEngine__.Object.op_Equality(this.targetPlayer,
+    null))\\r\\n                    this.hasTarget = false; // \uD0C0\uAE43 \uC624\uBE0C\uC81D\uD2B8
+    \uC5C6\uC744 \uACBD\uC6B0 \uD0C0\uAE43 \uCD08\uAE30\uD654\\r\\n               
+    // \uD0C0\uAE43 \uCC3E\uC544\uC8FC\uAE30\\r\\n                if (TS_EnergyController_1.default.GetInstance().Energies.length
+    != 0 && this.hasTarget == false) {\\r\\n                    let checkDistance
+    = 300;\\r\\n                    for (let i = 0; i < TS_EnergyController_1.default.GetInstance().Energies.length;
+    i++) {\\r\\n                        if (TS_EnergyController_1.default.GetInstance().isEnergyBroken[i]
+    == false) {\\r\\n                            let currentDistance = UnityEngine.Vector3.Distance(TS_EnergyController_1.default.GetInstance().Energies[i].transform.position,
+    this.transform.position);\\r\\n                            if (currentDistance
+    < checkDistance) {\\r\\n                                this.targetPlayerNum
+    = i;\\r\\n                                this.targetPlayer = TS_EnergyController_1.default.GetInstance().Energies[i];\\r\\n                               
+    this.hasTarget = true;\\r\\n                                checkDistance = currentDistance;\\r\\n                           
+    }\\r\\n                        }\\r\\n                    }\\r\\n               
+    }\\r\\n                // \uD0C0\uAE43\uC774 \uC788\uC744 \uACBD\uC6B0 \uD5A5\uD558\uAC8C\\r\\n               
+    if (this.hasTarget) {\\r\\n                    //console.log(`${this.index} monster
+    start going`);\\r\\n                    //console.log(UnityEngine.Vector3.Distance(TS_EnergyController.GetInstance().Energies[0].transform.position,
+    this.transform.position));\\r\\n                    this.pathFinder.SetDestination(this.targetPlayer.transform.position);\\r\\n               
+    }\\r\\n                // \uB9CC\uC57D \uD0C0\uAE43\uC774 \uBD80\uC11C\uC84C\uC744
+    \uACBD\uC6B0\\r\\n                if (TS_EnergyController_1.default.GetInstance().isEnergyBroken[this.targetPlayerNum]
+    == true) {\\r\\n                    this.hasTarget = false;\\r\\n                   
+    this.targetPlayer = null;\\r\\n                }\\r\\n            }\\r\\n           
+    else {\\r\\n                // \uC8FD\uC9C0 \uC54A\uC558\uC9C0\uB9CC \uC8FD\uC9C0
+    \uC54A\uC558\uC744 \uB54C\\r\\n                if (this.isDead == false) {\\r\\n                   
+    // \uC704\uCE58 \uB3D9\uAE30\uD654\uB97C \uC704\uD55C \uC774\uB3D9\\r\\n                   
+    if (this.getPlayerData == true && this.targetPlayerPos) {\\r\\n                       
+    this.transform.position = UnityEngine.Vector3.Lerp(this.transform.position, this.targetPlayerPos,
+    UnityEngine.Time.deltaTime);\\r\\n                        this.transform.rotation
+    = UnityEngine.Quaternion.Slerp(this.transform.rotation, this.targetPlayerRot,
+    UnityEngine.Time.deltaTime);\\r\\n                    }\\r\\n               
+    }\\r\\n            }\\r\\n            if (this.isDead == true) {\\r\\n               
+    this.gameObject.SetActive(false);\\r\\n            }\\r\\n        }\\r\\n   
+    }\\r\\n    // \uC11C\uBC84\uB85C\uBD80\uD130 \uBC1B\uC544\uC628 hp \uC124\uC815\\r\\n   
+    SetHp(hpnum) {\\r\\n        //console.log(`SetHp ${hpnum}`);\\r\\n        this.hpSlider.value
+    = hpnum;\\r\\n        this.hp = hpnum;\\r\\n        if (this.isDead == false
+    && this.hp <= 0) {\\r\\n            this.isDead = true;\\r\\n            this.gameObject.SetActive(false);\\r\\n           
+    TS_ZombieController_1.default.GetInstance().ZombieDead(this.index);\\r\\n       
+    }\\r\\n    }\\r\\n    // \uC778\uB371\uC2A4 \uC124\uC815\\r\\n    setIndex(index)
+    {\\r\\n        this.index = index;\\r\\n    }\\r\\n    // \uBAA8\uB4E0 \uC815\uBCF4
+    \uCD08\uAE30\uD654\\r\\n    SetReset() {\\r\\n        //this.anim.Play(\\\"Z_Run_InPlace\\\",-1,0);\\r\\n       
+    //this.pathFinder.enabled = true;\\r\\n        this.gameObject.SetActive(false);\\r\\n       
+    this.isDead = false;\\r\\n        let isHost = ClientStarter2_1.default.GetInstance().player.isHost;\\r\\n       
+    if (isHost == true) {\\r\\n            this.hasTarget = false;\\r\\n           
+    this.targetPlayer = null;\\r\\n        }\\r\\n        else {\\r\\n           
+    this.getPlayerData = false;\\r\\n            this.targetPlayerPos = null;\\r\\n           
+    this.targetPlayerRot = null;\\r\\n        }\\r\\n    }\\r\\n}\\r\\nexports.default
+    = TS_Zombie;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVFNfWm9tYmllLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiVFNfWm9tYmllLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUFBLGlEQUFxRDtBQUNyRCwyQ0FBMEM7QUFDMUMscURBQThDO0FBQzlDLG1EQUE4QztBQUM5QywrREFBd0Q7QUFFeEQsK0RBQXdEO0FBRXhELE1BQXFCLFNBQVUsU0FBUSxxQ0FBcUI7SUFBNUQ7O1FBR1csVUFBSyxHQUFZLEVBQUUsQ0FBQyxDQUFDLGdCQUFnQjtRQUNyQyxPQUFFLEdBQVksRUFBRSxDQUFDLENBQUMsWUFBWTtRQUM5QixXQUFNLEdBQWEsS0FBSyxDQUFDLENBQUMsV0FBVztRQUNyQyxhQUFRLEdBQWEsS0FBSyxDQUFDLENBQUMsWUFBWTtRQUN4QyxVQUFLLEdBQVksQ0FBQyxDQUFDLENBQUMsTUFBTTtRQUMxQixVQUFLLEdBQVksQ0FBQyxDQUFDLENBQUMsS0FBSztRQUN6QixVQUFLLEdBQVksQ0FBQyxDQUFDLENBQUMsU0FBUztRQUM3QixjQUFTLEdBQVksR0FBRyxDQUFDLENBQUMsU0FBUztRQU1sQyxjQUFTLEdBQWEsS0FBSyxDQUFDLENBQUMsZ0JBQWdCO1FBQzdDLG9CQUFlLEdBQVksQ0FBQyxDQUFDLENBQUMscUJBQXFCO1FBRXBELGtCQUFhLEdBQWEsS0FBSyxDQUFDLENBQUMsa0JBQWtCO0lBdUc5RCxDQUFDO0lBbkdHLEtBQUs7UUFDRCxJQUFJLENBQUMsVUFBVSxHQUFHLElBQUksQ0FBQyxZQUFZLFNBQUMsNkJBQVksRUFBRyxDQUFDO1FBQ3BELElBQUksQ0FBQyxFQUFFLEdBQUcsSUFBSSxDQUFDLEtBQUssQ0FBQztRQUNyQixJQUFJLENBQUMsTUFBTSxHQUFHLEtBQUssQ0FBQztRQUNwQixJQUFJLENBQUMsUUFBUSxDQUFDLFFBQVEsR0FBRyxJQUFJLENBQUMsRUFBRSxDQUFDO0lBQ3JDLENBQUM7SUFFTyx1QkFBdUIsQ0FBQyxJQUEwQixFQUFFLEdBQVk7UUFDcEUsT0FBTyxJQUFJLFdBQVcsQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLENBQUMsR0FBRyxHQUFHLEVBQUUsSUFBSSxDQUFDLENBQUMsR0FBRyxHQUFHLEVBQUUsSUFBSSxDQUFDLENBQUMsR0FBRyxHQUFHLENBQUMsQ0FBQztJQUM3RSxDQUFDO0lBRUQsTUFBTTtRQUNGLFdBQVc7UUFDWCxJQUFHLHdCQUFjLENBQUMsV0FBVyxFQUFFLENBQUMsV0FBVyxJQUFJLElBQUksRUFBQztZQUNoRCxJQUFJLE1BQU0sR0FBRyx3QkFBYyxDQUFDLFdBQVcsRUFBRSxDQUFDLE1BQU0sQ0FBQyxNQUFNLENBQUM7WUFDeEQsa0JBQWtCO1lBQ2xCLElBQUcsTUFBTSxJQUFJLElBQUksSUFBSSxJQUFJLENBQUMsTUFBTSxJQUFJLEtBQUssRUFBQztnQkFDdEMsMkJBa0ZtekwsV0FBWSxDQWxGNXpMLElBQUksQ0FBQyxZQUFZLEVBQUksSUFBSTtvQkFBRSxJQUFJLENBQUMsU0FBUyxHQUFHLEtBQUssQ0FBQyxDQUFDLHVCQUF1QjtnQkFFN0UsVUFBVTtnQkFDVixJQUFHLDZCQUFtQixDQUFDLFdBQVcsRUFBRSxDQUFDLFFBQVEsQ0FBQyxNQUFNLElBQUksQ0FBQyxJQUFJLElBQUksQ0FBQyxTQUFTLElBQUksS0FBSyxFQUFDO29CQUNqRixJQUFJLGFBQWEsR0FBWSxHQUFHLENBQUM7b0JBQ2pDLEtBQUksSUFBSSxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsR0FBRyw2QkFBbUIsQ0FBQyxXQUFXLEVBQUUsQ0FBQyxRQUFRLENBQUMsTUFBTSxFQUFFLENBQUMsRUFBRSxFQUFDO3dCQUN0RSxJQUFHLDZCQUFtQixDQUFDLFdBQVcsRUFBRSxDQUFDLGNBQWMsQ0FBQyxDQUFDLENBQUMsSUFBSSxLQUFLLEVBQUM7NEJBQzVELElBQUksZUFBZSxHQUFHLFdBQVcsQ0FBQyxPQUFPLENBQUMsUUFBUSxDQUFDLDZCQUFtQixDQUFDLFdBQVcsRUFBRSxDQUFDLFFBQVEsQ0FBQyxDQUFDLENBQUMsQ0FBQyxTQUFTLENBQUMsUUFBUSxFQUFFLElBQUksQ0FBQyxTQUFTLENBQUMsUUFBUSxDQUFDLENBQUM7NEJBQzlJLElBQUcsZUFBZSxHQUFHLGFBQWEsRUFBQztnQ0FDL0IsSUFBSSxDQUFDLGVBQWUsR0FBRyxDQUFDLENBQUM7Z0NBQ3pCLElBQUksQ0FBQyxZQUFZLEdBQUcsNkJBQW1CLENBQUMsV0FBVyxFQUFFLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQyxDQUFDO2dDQUNsRSxJQUFJLENBQUMsU0FBUyxHQUFHLElBQUksQ0FBQztnQ0FDdEIsYUFBYSxHQUFHLGVBQWUsQ0FBQzs2QkFDbkM7eUJBQ0o7cUJBQ0o7aUJBQ0o7Z0JBRUQsZ0JBQWdCO2dCQUNoQixJQUFHLElBQUksQ0FBQyxTQUFTLEVBQUM7b0JBQ2QsbURBQW1EO29CQUNuRCx1SUFBdUk7b0JBQ3ZJLElBQUksQ0FBQyxVQUFVLENBQUMsY0FBYyxDQUFDLElBQUksQ0FBQyxZQUFZLENBQUMsU0FBUyxDQUFDLFFBQVEsQ0FBQyxDQUFDO2lCQUN4RTtnQkFFRCxpQkFBaUI7Z0JBQ2pCLElBQUcsNkJBQW1CLENBQUMsV0FBVyxFQUFFLENBQUMsY0FBYyxDQUFDLElBQUksQ0FBQyxlQUFlLENBQUMsSUFBSSxJQUFJLEVBQUM7b0JBQzlFLElBQUksQ0FBQyxTQUFTLEdBQUcsS0FBSyxDQUFDO29CQUN2QixJQUFJLENBQUMsWUFBWSxHQUFHLElBQUksQ0FBQztpQkFDNUI7YUFFSjtpQkFBSTtnQkFDRCxtQkFBbUI7Z0JBQ25CLElBQUcsSUFBSSxDQUFDLE1BQU0sSUFBSSxLQUFLLEVBQUU7b0JBQ3JCLGdCQUFnQjtvQkFDaEIsSUFBRyxJQUFJLENBQUMsYUFBYSxJQUFLLElBQUksSUFBSSxJQUFJLENBQUMsZUFBZSxFQUFDO3dCQUNuRCxJQUFJLENBQUMsU0FBUyxDQUFDLFFBQVEsR0FBRyxXQUFXLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsU0FBUyxDQUFDLFFBQVEsRUFBRSxJQUFJLENBQUMsZUFBZSxFQUFDLFdBQVcsQ0FBQyxJQUFJLENBQUMsU0FBUyxDQUFDLENBQUM7d0JBQzdILElBQUksQ0FBQyxTQUFTLENBQUMsUUFBUSxHQUFHLFdBQVcsQ0FBQyxVQUFVLENBQUMsS0FBSyxDQUFDLElBQUksQ0FBQyxTQUFTLENBQUMsUUFBUSxFQUFFLElBQUksQ0FBQyxlQUFlLEVBQUUsV0FBVyxDQUFDLElBQUksQ0FBQyxTQUFTLENBQUMsQ0FBQztxQkFDckk7aUJBQ0o7YUFDSjtZQUVELElBQUcsSUFBSSxDQUFDLE1BQU0sSUFBSSxJQUFJLEVBQ3RCO2dCQUNJLElBQUksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO2FBQ3BDO1NBQ0o7SUFDTCxDQUFDO0lBRUQsa0JBQWtCO0lBQ2xCLEtBQUssQ0FBQyxLQUFjO1FBQ2hCLGdDQUFnQztRQUNoQyxJQUFJLENBQUMsUUFBUSxDQUFDLEtBQUssR0FBRyxLQUFLLENBQUM7UUFDNUIsSUFBSSxDQUFDLEVBQUUsR0FBRyxLQUFLLENBQUM7UUFDaEIsSUFBRyxJQUFJLENBQUMsTUFBTSxJQUFJLEtBQUssSUFBSSxJQUFJLENBQUMsRUFBRSxJQUFJLENBQUMsRUFBRTtZQUNyQyxJQUFJLENBQUMsTUFBTSxHQUFHLElBQUksQ0FBQztZQUNuQixJQUFJLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsQ0FBQztZQUNqQyw2QkFBbUIsQ0FBQyxXQUFXLEVBQUUsQ0FBQyxVQUFVLENBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQyxDQUFDO1NBQzVEO0lBQ0wsQ0FBQztJQUVELFNBQVM7SUFDVCxRQUFRLENBQUMsS0FBYztRQUNuQixJQUFJLENBQUMsS0FBSyxHQUFHLEtBQUssQ0FBQztJQUN2QixDQUFDO0lBRUQsWUFBWTtJQUNaLFFBQVE7UUFDSix1Q0FBdUM7UUFDdkMsaUNBQWlDO1FBQ2pDLElBQUksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO1FBQ2pDLElBQUksQ0FBQyxNQUFNLEdBQUcsS0FBSyxDQUFDO1FBQ3BCLElBQUksTUFBTSxHQUFHLHdCQUFjLENBQUMsV0FBVyxFQUFFLENBQUMsTUFBTSxDQUFDLE1BQU0sQ0FBQztRQUN4RCxJQUFHLE1BQU0sSUFBSSxJQUFJLEVBQUM7WUFDZCxJQUFJLENBQUMsU0FBUyxHQUFHLEtBQUssQ0FBQztZQUN2QixJQUFJLENBQUMsWUFBWSxHQUFHLElBQUksQ0FBQztTQUM1QjthQUFJO1lBQ0QsSUFBSSxDQUFDLGFBQWEsR0FBRyxLQUFLLENBQUM7WUFDM0IsSUFBSSxDQUFDLGVBQWUsR0FBRyxJQUFJLENBQUM7WUFDNUIsSUFBSSxDQUFDLGVBQWUsR0FBRyxJQUFJLENBQUM7U0FDL0I7SUFDTCxDQUFDO0NBQ0o7QUExSEQsNEJBMEhDIn0=\",\"assetPath\":\"Assets/Script/Test/TS_Zombie.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"mscorlib\",\"name\":\"maxHP\",\"type\":\"System.Single\",\"isArray\":false,\"initValue\":[\"10\"],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"Header\",\"args\":[\"\\\"basic
+    Managerment\\\"\"]}]},{\"assembly\":\"mscorlib\",\"name\":\"hp\",\"type\":\"System.Single\",\"isArray\":false,\"initValue\":[\"10\"],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"isDead\",\"type\":\"System.Boolean\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"isAttack\",\"type\":\"System.Boolean\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"speed\",\"type\":\"System.Single\",\"isArray\":false,\"initValue\":[\"5\"],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"index\",\"type\":\"System.Single\",\"isArray\":false,\"initValue\":[\"0\"],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"damge\",\"type\":\"System.Single\",\"isArray\":false,\"initValue\":[\"1\"],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"attackDis\",\"type\":\"System.Single\",\"isArray\":false,\"initValue\":[\"3.5\"],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"hpSlider\",\"type\":\"UnityEngine.UI.Slider\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"getPlayerData\",\"type\":\"System.Boolean\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"targetPlayerPos\",\"type\":\"UnityEngine.Vector3\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"targetPlayerRot\",\"type\":\"UnityEngine.Quaternion\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"TS_Zombie\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 55be4f53a8c837ba36411157cedcacec
+  onlyWriteTrigger: 0

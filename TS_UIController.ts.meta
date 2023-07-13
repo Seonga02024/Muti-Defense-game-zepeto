@@ -1,0 +1,92 @@
+fileFormatVersion: 2
+guid: 9c35d9340f17d594fa06e689511b11d0
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst ClientStarter2_1
+    = require(\\\"./ClientStarter2\\\");\\r\\nconst TS_BulletController_1 = require(\\\"./TS_BulletController\\\");\\r\\nconst
+    TS_BarriqueController_1 = require(\\\"./TS_BarriqueController\\\");\\r\\nclass
+    TS_UIController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor()
+    {\\r\\n        super(...arguments);\\r\\n        this.barriqueCoin = 100; //
+    \uBCA0\uB9AC\uC5B4 \uC124\uCE58 \uBE44\uC6A9\\r\\n        this.BulletDamgeUpgradeCoin
+    = 100; // \uB370\uBBF8\uC9C0 \uC5C5\uADF8\uB808\uC774\uB4DC \uBE44\uC6A9\\r\\n       
+    this.BulletShootUpgradeCoin = 80; // \uD0C4\uC57D \uC218 \uC5C5\uADF8\uB808\uC774\uB4DC
+    \uBE44\uC6A9\\r\\n        this.deltaTime = 0; // \uC2DC\uAC04 \uCE21\uC815\uD560
+    \uB54C \uC0AC\uC6A9\\r\\n        this.coin = 500; // \uD604\uC7AC \uC18C\uC9C0\uD558\uACE0
+    \uC788\uB294 \uCF54\uC778 \uC218\\r\\n    }\\r\\n    static GetInstance() {\\r\\n       
+    if (!TS_UIController.Instance) {\\r\\n            const targetObj = UnityEngine_1.GameObject.Find(\\\"UIController\\\");\\r\\n           
+    if (targetObj) {\\r\\n                TS_UIController.Instance = targetObj.GetComponent($typeof(TS_UIController));\\r\\n           
+    }\\r\\n        }\\r\\n        return TS_UIController.Instance;\\r\\n    }\\r\\n   
+    Start() {\\r\\n        // \uAC8C\uC784 \uC2DC\uC791 \uBC84\uD2BC\\r\\n       
+    this.GameStartBtn.OnPointDownEvent.AddListener(() => {\\r\\n            ClientStarter2_1.default.GetInstance().SendNextStage();\\r\\n       
+    });\\r\\n        // \uCD1D \uBC1C\uC0AC \uBC84\uD2BC\\r\\n        this.ShootBtn.OnPointDownEvent.AddListener(()
+    => {\\r\\n            //console.log(`CheakShootBall`);\\r\\n            TS_BulletController_1.default.GetInstance().CheakShootBall();\\r\\n       
+    });\\r\\n        // \uD0C4\uC57D \uCC44\uC6B0\uAE30 \uBC84\uD2BC\\r\\n       
+    this.FillbulletBtn.OnPointDownEvent.AddListener(() => {\\r\\n            //console.log(`FillBall`);\\r\\n           
+    TS_BulletController_1.default.GetInstance().FillBall();\\r\\n        });\\r\\n       
+    // \uBCA0\uB9AC\uC5B4 \uC124\uCE58\uD558\uAE30 \uBC84\uD2BC\\r\\n        this.barriqueBtn.OnPointDownEvent.AddListener(()
+    => {\\r\\n            //console.log(`barriqueBtn`);\\r\\n            if (this.coin
+    >= this.barriqueCoin) {\\r\\n                this.SetCoin(this.coin - this.barriqueCoin);\\r\\n               
+    ClientStarter2_1.default.GetInstance().SendBarriqueData();\\r\\n               
+    ClientStarter2_1.default.GetInstance().SetCoin(this.coin);\\r\\n            }\\r\\n       
+    });\\r\\n        // \uCD1D \uB370\uBBF8\uC9C0 \uC5C5\uADF8\uB808\uC774\uB4DC
+    \uBC84\uD2BC\\r\\n        this.BulletDamgeUpgradeBtn.OnPointDownEvent.AddListener(()
+    => {\\r\\n            //console.log(`BulletDamgeUpgradeBtn`);\\r\\n           
+    if (this.coin >= this.BulletDamgeUpgradeCoin) {\\r\\n                this.SetCoin(this.coin
+    - this.BulletDamgeUpgradeCoin);\\r\\n                TS_BulletController_1.default.GetInstance().UpgradeDamge();\\r\\n               
+    ClientStarter2_1.default.GetInstance().SetCoin(this.coin);\\r\\n            }\\r\\n       
+    });\\r\\n        // \uD0C4\uC57D \uC218 \uC5C5\uADF8\uB808\uC774\uB4DC \uBC84\uD2BC\\r\\n       
+    this.BulletShootUpgradeBtn.OnPointDownEvent.AddListener(() => {\\r\\n           
+    //console.log(`BulletShootUpgradeBtn`);\\r\\n            if (this.coin >= this.BulletShootUpgradeCoin)
+    {\\r\\n                this.SetCoin(this.coin - this.BulletShootUpgradeCoin);\\r\\n               
+    TS_BulletController_1.default.GetInstance().UpgradePublicShootbulletNum();\\r\\n               
+    ClientStarter2_1.default.GetInstance().SetCoin(this.coin);\\r\\n            }\\r\\n       
+    });\\r\\n        this.OffGameUI(); // \uB85C\uBE44 UI \uC124\uC815\\r\\n    }\\r\\n   
+    // \uCF54\uC778 \uAC12 \uC138\uD305\\r\\n    SetCoin(num) {\\r\\n        this.coin
+    = num;\\r\\n        this.coinUI.text = \\\"coin : \\\" + num.toString();\\r\\n   
+    }\\r\\n    // \uAC8C\uC784 \uC2DC\uC791 UI \uC124\uC815\\r\\n    OnGameUI() {\\r\\n       
+    this.peopleUI.enabled = false;\\r\\n        this.GameStartBtn.enabled = false;\\r\\n       
+    this.ShootBtn.enabled = true;\\r\\n        this.FillbulletBtn.enabled = true;\\r\\n       
+    this.monsterNum.enabled = true;\\r\\n        this.bulletNum.enabled = true;\\r\\n       
+    this.roundUI.enabled = true;\\r\\n        this.barriqueBtn.enabled = true;\\r\\n       
+    this.BulletDamgeUpgradeBtn.enabled = true;\\r\\n        this.BulletShootUpgradeBtn.enabled
+    = true;\\r\\n        this.coinUI.enabled = true;\\r\\n    }\\r\\n    // \uB85C\uBE44
+    UI \uC124\uC815\\r\\n    OffGameUI() {\\r\\n        this.roundUI.enabled = false;\\r\\n       
+    this.ShootBtn.enabled = false;\\r\\n        this.FillbulletBtn.enabled = false;\\r\\n       
+    this.monsterNum.enabled = false;\\r\\n        this.bulletNum.enabled = false;\\r\\n       
+    this.barriqueBtn.enabled = false;\\r\\n        this.BulletDamgeUpgradeBtn.enabled
+    = false;\\r\\n        this.BulletShootUpgradeBtn.enabled = false;\\r\\n       
+    this.coinUI.enabled = false;\\r\\n        this.GameStartBtn.enabled = true;\\r\\n       
+    this.peopleUI.enabled = true;\\r\\n    }\\r\\n    // \uB85C\uBE44 UI \uC124\uC815\\r\\n   
+    SetRobbyUI(num) {\\r\\n        this.peopleUI.text = \\\"\uD604\uC7AC \uC785\uC7A5
+    \uC778\uC6D0 : \\\" + num.toString() + \\\" / 4\\\";\\r\\n    }\\r\\n    // \uB9E4\uCD08
+    fps ui \uD45C\uC2DC\\r\\n    Update() {\\r\\n        this.deltaTime += (UnityEngine_1.Time.deltaTime
+    - this.deltaTime) * 0.1;\\r\\n        let msec = this.deltaTime * 1000.0;\\r\\n       
+    let fps = 1.0 / this.deltaTime;\\r\\n        this.fpsUI.text = msec.toFixed(1)
+    + \\\" ms (\\\" + fps.toFixed() + \\\" fps)\\\";\\r\\n    }\\r\\n    // \uB77C\uC6B4\uB4DC
+    UI \uC124\uC815\\r\\n    SetRoundUI(num) {\\r\\n        this.roundUI.text = \\\"round
+    : \\\" + num.toString();\\r\\n        if (num >= 2) {\\r\\n            this.SetCoin(this.coin
+    + 100);\\r\\n            ClientStarter2_1.default.GetInstance().SetCoin(this.coin);\\r\\n       
+    }\\r\\n    }\\r\\n    // \uBAAC\uC2A4\uD130 \uC218 Ui \uC5C5\uB370\uC774\uD2B8\\r\\n   
+    UpdateMonsterNumUI() {\\r\\n        //console.log(`UpdateMonsterNumUI`);\\r\\n       
+    this.monsterNum.text = \\\"\uBAAC\uC2A4\uD130 \uC218 : \\\" + ClientStarter2_1.default.GetInstance().currentRoundZombieNum.toString();\\r\\n   
+    }\\r\\n}\\r\\nexports.default = TS_UIController;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVFNfVUlDb250cm9sbGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiVFNfVUlDb250cm9sbGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsNkNBQXdEO0FBR3hELGlEQUFxRDtBQUNyRCxxREFBOEM7QUFDOUMsK0RBQXdEO0FBQ3hELG1FQUE0RDtBQUU1RCxNQUFxQixlQUFnQixTQUFRLHFDQUFxQjtJQUFsRTs7UUFTWSxpQkFBWSxHQUFZLEdBQUcsQ0FBQyxDQUFDLFlBQVk7UUFFekMsMkJBQXNCLEdBQVksR0FBRyxDQUFDLENBQUMsZUFBZTtRQUV0RCwyQkFBc0IsR0FBWSxFQUFFLENBQUMsQ0FBQyxnQkFBZ0I7UUFTdEQsY0FBUyxHQUFZLENBQUMsQ0FBQyxDQUFDLGNBQWM7UUFDdkMsU0FBSSxHQUFZLEdBQUcsQ0FBQyxDQUFDLGtCQUFrQjtJQWdJbEQsQ0FBQztJQTdIVSxNQUFNLENBQUMsV0FBVztRQUNyQixJQUFHLENBQUMsZUFBZSxDQUFDLFFBQVEsRUFBQztZQUN6QixNQUFNLFNBQVMsR0FBRyx3QkFBVSxDQUFDLElBQUksQ0FBQyxjQUFjLENBQUMsQ0FBQztZQUNsRCxJQUFHLFNBQVMsRUFBQztnQkFDVCxlQUFlLENBQUMsUUFBUSxHQUFHLFNBQVMsQ0FBQyxZQUFZLFNBQUMsZUFBZSxFQUFHLENBQUM7YUFDeEU7U0FDSjtRQUNELE9BQU8sZUFBZSxDQUFDLFFBQVEsQ0FBQztJQUNwQyxDQUFDO0lBRUQsS0FBSztRQUNELFdBQVc7UUFDWCxJQUFJLENBQUMsWUFBWSxDQUFDLGdCQUFnQixDQUFDLFdBQVcsQ0FBQyxHQUFFLEVBQUU7WUFDL0Msd0JBQWMsQ0FBQyxXQUFXLEVBQUUsQ0FBQyxhQUFhLEVBQUUsQ0FBQztRQUNqRCxDQUFDLENBQUMsQ0FBQztRQUNILFVBQVU7UUFDVixJQUFJLENBQUMsUUFBUSxDQUFDLGdCQUFnQixDQUFDLFdBQVcsQ0FBQyxHQUFFLEVBQUU7WUFDM0MsZ0NBQWdDO1lBQ2hDLDZCQUFt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\",\"assetPath\":\"Assets/Script/Test/TS_UIController.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"ZEPETO.Character.Controller\",\"name\":\"GameStartBtn\",\"type\":\"ZEPETO.Character.Controller.ZepetoScreenButton\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"Header\",\"args\":[\"\\\"Button\\\"\"]},{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"ZEPETO.Character.Controller\",\"name\":\"ShootBtn\",\"type\":\"ZEPETO.Character.Controller.ZepetoScreenButton\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"ZEPETO.Character.Controller\",\"name\":\"FillbulletBtn\",\"type\":\"ZEPETO.Character.Controller.ZepetoScreenButton\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"ZEPETO.Character.Controller\",\"name\":\"barriqueBtn\",\"type\":\"ZEPETO.Character.Controller.ZepetoScreenButton\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"ZEPETO.Character.Controller\",\"name\":\"BulletDamgeUpgradeBtn\",\"type\":\"ZEPETO.Character.Controller.ZepetoScreenButton\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"ZEPETO.Character.Controller\",\"name\":\"BulletShootUpgradeBtn\",\"type\":\"ZEPETO.Character.Controller.ZepetoScreenButton\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"fpsUI\",\"type\":\"UnityEngine.UI.Text\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"monsterNum\",\"type\":\"UnityEngine.UI.Text\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"bulletNum\",\"type\":\"UnityEngine.UI.Text\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"roundUI\",\"type\":\"UnityEngine.UI.Text\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"peopleUI\",\"type\":\"UnityEngine.UI.Text\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"coinUI\",\"type\":\"UnityEngine.UI.Text\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"coin\",\"type\":\"System.Single\",\"isArray\":false,\"initValue\":[\"500\"],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"TS_UIController\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 2a85359dda7b84c6d0b51fdfd00adc26
+  onlyWriteTrigger: 0

@@ -1,0 +1,97 @@
+fileFormatVersion: 2
+guid: 02bf8d95ac8ffd14a839fcb56f3f6fc9
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst
+    UnityEngine = require(\\\"UnityEngine\\\");\\r\\nconst TS_Zombie_1 = require(\\\"./TS_Zombie\\\");\\r\\nconst
+    ClientStarter2_1 = require(\\\"./ClientStarter2\\\");\\r\\nconst TS_UIController_1
+    = require(\\\"./TS_UIController\\\");\\r\\nclass TS_ZombieController extends
+    ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor() {\\r\\n       
+    super(...arguments);\\r\\n        this.isDeadZombies = []; // \uC8FD\uC5C8\uB294\uC9C0
+    \uC548 \uC8FD\uC5C8\uB294\uC9C0 \uC880\uBE44 \uBC30\uC5F4 \uAD00\uB9AC\\r\\n       
+    this.Portal = [];\\r\\n        this.ZombieTS = [];\\r\\n        this.ZombieObj
+    = [];\\r\\n        this.currentZombieNum = 4; // \uD604\uC7AC \uB77C\uC6B4\uB4DC
+    \uC880\uBE44 \uC218\\r\\n        this.maxZombieNum = 50; // \uCD5C\uB300 \uC880\uBE44
+    \uC218\\r\\n    }\\r\\n    static GetInstance() {\\r\\n        if (!TS_ZombieController.Instance)
+    {\\r\\n            const targetObj = UnityEngine.GameObject.Find(\\\"ZombieController\\\");\\r\\n           
+    if (targetObj) {\\r\\n                TS_ZombieController.Instance = targetObj.GetComponent($typeof(TS_ZombieController));\\r\\n           
+    }\\r\\n        }\\r\\n        return TS_ZombieController.Instance;\\r\\n    }\\r\\n   
+    Start() {\\r\\n        this.ZombieObj = [];\\r\\n        this.isDeadZombies =
+    [];\\r\\n        this.ZombieTS = [];\\r\\n        this.CreateZombies();\\r\\n   
+    }\\r\\n    // \uC880\uBE44 \uC624\uBE0C\uC81D\uD2B8 \uC0DD\uC131\\r\\n    CreateZombies()
+    {\\r\\n        for (let index = 0; index < this.maxZombieNum; index++) {\\r\\n           
+    let pos = new UnityEngine.Vector3(this.zombieParent.transform.position.x + (index
+    * 2), this.zombieParent.transform.position.y, this.zombieParent.transform.position.z);\\r\\n           
+    //newZombie.transform.parent = this.zombieParent.transform; // zombies \uD558\uC704\uAC1D\uCCB4\uB85C
+    \uB123\uAE30\\r\\n            let zombie = UnityEngine.GameObject.Instantiate(this.zombiePrefab);\\r\\n           
+    zombie.transform.position = pos;\\r\\n            this.isDeadZombies[index] =
+    false;\\r\\n            this.ZombieObj.push(zombie);\\r\\n            let zombieTs
+    = zombie.GetComponent($typeof(TS_Zombie_1.default));\\r\\n            if (ZEPETO_Script_1.ZepetoScriptBehaviour.op_Inequality(zombieTs,
+    null)) {\\r\\n                this.ZombieTS.push(zombieTs);\\r\\n               
+    zombieTs.setIndex(index);\\r\\n            }\\r\\n            zombie.SetActive(false);\\r\\n       
+    }\\r\\n    }\\r\\n    // \uB9E4 \uB77C\uC6B4\uB4DC \uC880\uBE44 \uC138\uD305\uD560
+    \uB54C \uC4F0\uC774\uB294 \uD568\uC218\\r\\n    *SetRoundZombie(tick) {\\r\\n       
+    this.currentZombieNum = ClientStarter2_1.default.GetInstance().currentRoundZombieNum;\\r\\n       
+    // \uC880\uBE44 \uC548 \uBCF4\uC774\uAC8C \uD588\uB2E4\uAC00\\r\\n        for
+    (let index = 0; index < this.currentZombieNum; index++) {\\r\\n            this.ZombieTS[index].gameObject.SetActive(false);\\r\\n       
+    }\\r\\n        // \uC880\uBE44 \uC704\uCE58\uB97C \uD3EC\uD0C8 \uC704\uCE58\uB85C
+    \uC774\uB3D9\uC2DC\uD0A4\uAE30\\r\\n        for (let index = 0; index < this.currentZombieNum;
+    index++) {\\r\\n            let portalNum = index % this.Portal.length;\\r\\n           
+    this.ZombieTS[index].gameObject.transform.position = this.Portal[portalNum].position;\\r\\n           
+    this.ZombieTS[index].SetReset(); // \uC880\uBE44 \uAE30\uBCF8 \uAC12 \uB9AC\uC14B\uD558\uAE30\\r\\n           
+    this.isDeadZombies[index] = false;\\r\\n        }\\r\\n        // \uD638\uC2A4\uD2B8\uC77C
+    \uACBD\uC6B0\uB9CC \uC880\uBE44 \uBCF4\uC774\uAC8C \uD558\uAE30\\r\\n       
+    // \uD638\uC2A4\uD2B8\uAC00 \uC544\uB2D0 \uACBD\uC6B0 \uC774\uB3D9\uC744 \uB05D\uB9C8\uCE58\uACE0
+    \uBCF4\uC774\uAC8C \uD574\uC8FC\uAE30\\r\\n        TS_UIController_1.default.GetInstance().UpdateMonsterNumUI();\\r\\n       
+    for (let index = 0; index < this.currentZombieNum; index++) {\\r\\n           
+    let isHost = ClientStarter2_1.default.GetInstance().player.isHost;\\r\\n           
+    if (isHost == true) {\\r\\n                this.ZombieTS[index].gameObject.SetActive(true);\\r\\n               
+    yield new UnityEngine.WaitForSeconds(tick);\\r\\n            }\\r\\n        }\\r\\n   
+    }\\r\\n    // \uD638\uC2A4\uD2B8\uC77C \uACBD\uC6B0 \uC9C0\uC18D\uC801\uC73C\uB85C
+    \uAC12 \uBCF4\uB0B4\uC8FC\uAE30\\r\\n    UpdateZombie() {\\r\\n        let isHost
+    = ClientStarter2_1.default.GetInstance().player.isHost;\\r\\n        if (isHost)
+    {\\r\\n            this.StartCoroutine(this.SendZombieData(0.04));\\r\\n       
+    }\\r\\n    }\\r\\n    // \uB370\uBBF8\uC9C0\uB97C \uC785\uC5B4\uC11C hp\uAC00
+    \uBC14\uB014 \uB54C (\uC880\uBE44 \uBC88\uD638 \uAC12, \uBC14\uB010 hp \uAC12)\\r\\n   
+    ChangeHP(index, hp) {\\r\\n        this.ZombieTS[index].SetHp(hp);\\r\\n    }\\r\\n   
+    // \uC880\uBE44 \uC8FD\uC5C8\uB294\uAC00\\r\\n    ZombieDead(index) {\\r\\n       
+    //console.log(`${index} zombie dead`);\\r\\n        this.isDeadZombies[index]
+    = true;\\r\\n    }\\r\\n    // \uD604\uC7AC \uD0C0\uAE43 \uC124\uC815 - \uD638\uC2A4\uD2B8
+    \uC544\uB2D0 \uC2DC\\r\\n    SetZombiePosRot(index, pos, rot) {\\r\\n       
+    if (this.ZombieTS[index].gameObject.activeSelf == false) {\\r\\n            if
+    (this.isDeadZombies[index] == false)\\r\\n                this.ZombieTS[index].gameObject.SetActive(true);\\r\\n       
+    }\\r\\n        this.ZombieTS[index].targetPlayerPos = pos;\\r\\n        this.ZombieTS[index].targetPlayerRot
+    = rot;\\r\\n        this.ZombieTS[index].getPlayerData = true;\\r\\n    }\\r\\n   
+    // \uD604\uC7AC \uC880\uBE44 \uC704\uCE58 \uBCC0\uACBD - \uD638\uC2A4\uD2B8 \uC544\uB2D0
+    \uC2DC\\r\\n    TransZombiePosRot(index, pos, rot) {\\r\\n        if (this.ZombieTS[index].gameObject.activeSelf
+    == true) {\\r\\n            if (this.isDeadZombies[index] == false)\\r\\n               
+    this.ZombieTS[index].gameObject.SetActive(false);\\r\\n        }\\r\\n       
+    this.ZombieTS[index].getPlayerData = false; // \uD0C0\uAE43 \uC5C6\uC74C\\r\\n       
+    this.ZombieTS[index].gameObject.transform.position = pos;\\r\\n        this.ZombieTS[index].gameObject.transform.rotation
+    = rot;\\r\\n    }\\r\\n    // \uC9C0\uC18D\uC801\uC73C\uB85C \uC704\uCE58\uBCF4\uB0B4\uAE30\\r\\n   
+    *SendZombieData(tick) {\\r\\n        while (true) {\\r\\n            yield new
+    UnityEngine.WaitForSeconds(tick);\\r\\n            this.currentZombieNum = ClientStarter2_1.default.GetInstance().currentRoundZombieNum;\\r\\n           
+    for (let n = 0; n < this.currentZombieNum; n++) {\\r\\n                if (this.ZombieTS[n].gameObject.activeSelf
+    == true && this.isDeadZombies[n] == false) {\\r\\n                    ClientStarter2_1.default.GetInstance().SendZombieTransform(n.toString(),
+    this.ZombieTS[n].gameObject.transform.position, this.ZombieTS[n].gameObject.transform.rotation.eulerAngles);\\r\\n               
+    }\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n}\\r\\nexports.default =
+    TS_ZombieController;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVFNfWm9tYmllQ29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlRTX1pvbWJpZUNvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxpREFBcUQ7QUFDckQsMkNBQTBDO0FBQzFDLDJDQUFvQztBQUNwQyxxREFBOEM7QUFDOUMsdURBQTZDO0FBRTdDLE1BQXFCLG1CQUFvQixTQUFRLHFDQUFxQjtJQUF0RTs7UUFHVyxrQkFBYSxHQUFlLEVBQUUsQ0FBQyxDQUFDLHVCQUF1QjtRQUN2RCxXQUFNLEdBQTZCLEVBQUUsQ0FBQztRQUN0QyxhQUFRLEdBQWlCLEVBQUUsQ0FBQztRQUM1QixjQUFTLEdBQThCLEVBQUUsQ0FBQztRQUUxQyxxQkFBZ0IsR0FBWSxDQUFDLENBQUMsQ0FBQyxjQUFjO1FBRzdDLGlCQUFZLEdBQVksRUFBRSxDQUFDLENBQUMsVUFBVTtJQThIakQsQ0FBQztJQTNIVSxNQUFNLENBQUMsV0FBVztRQUNyQixJQUFHLENBQUMsbUJBQW1CLENBQUMsUUFBUSxFQUFDO1lBQzdCLE1BQU0sU0FBUyxHQUFHLFdBQVcsQ0FBQyxVQUFVLENBQUMsSUFBSSxDQUFDLGtCQUFrQixDQUFDLENBQUM7WUFDbEUsSUFBRyxTQUFTLEVBQUM7Z0JBQ1QsbUJBQW1CLENBQUMsUUFBUSxHQUFHLFNBQVMsQ0FBQyxZQUFZLFNBQUMsbUJBQW1CLEVBQUcsQ0FBQzthQUNoRjtTQUNKO1FBQ0QsT0FBTyxtQkFBbUIsQ0FBQyxRQUFRLENBQUM7SUFDeEMsQ0FBQztJQUVELEtBQUs7UUFDRCxJQUFJLENBQUMsU0FBUyxHQUFFLEVBQUUsQ0FBQztRQUNuQixJQUFJLENBQUMsYUFBYSxHQUFHLEVBQUUsQ0FBQztRQUN4QixJQUFJLENBQUMsUUFBUSxHQUFHLEVBQUUsQ0FBQztRQUNuQixJQUFJLENBQUMsYUFBYSxFQUFFLENBQUM7SUFDekIsQ0FBQztJQUVELGFBQWE7SUFDYixhQUFhO1FBQ1QsS0FBSyxJQUFJLEtBQUssR0FB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\",\"assetPath\":\"Assets/Script/Test/TS_ZombieController.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"mscorlib\",\"name\":\"isDeadZombies\",\"type\":\"System.Boolean[]\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"Header\",\"args\":[\"\\\"Zombie\\\"\"]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"Portal\",\"type\":\"UnityEngine.Transform[]\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"\",\"name\":\"ZombieTS\",\"type\":\"C:/Users/user/Desktop/ZepetoNPCMuti/ZepetoMuti/Assets/Script/Test/TS_Zombie.default\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"ZombieObj\",\"type\":\"UnityEngine.GameObject[]\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"currentZombieNum\",\"type\":\"System.Single\",\"isArray\":false,\"initValue\":[\"4\"],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"zombiePrefab\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"zombieParent\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"maxZombieNum\",\"type\":\"System.Single\",\"isArray\":false,\"initValue\":[\"50\"],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"TS_ZombieController\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 4f8c8c135044de2f48af842aa37d11d2
+  onlyWriteTrigger: 0

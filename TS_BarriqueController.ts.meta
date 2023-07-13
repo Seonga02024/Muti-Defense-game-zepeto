@@ -1,0 +1,46 @@
+fileFormatVersion: 2
+guid: 6eb00705814a57f47aa6d228428977d7
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst
+    UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst ClientStarter2_1 = require(\\\"./ClientStarter2\\\");\\r\\nclass
+    TS_BarriqueController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n   
+    constructor() {\\r\\n        super(...arguments);\\r\\n        this.barriqueObj
+    = []; // \uBCA0\uB9AC\uC5B4 \uC624\uBE0C\uC81D\uD2B8 \uBC30\uC5F4\\r\\n       
+    this.MaxbarriqueNum = 20; // \uCD5C\uB300 \uBCA0\uB9AC\uC5B4 \uAC2F\uC218\\r\\n   
+    }\\r\\n    static GetInstance() {\\r\\n        if (!TS_BarriqueController.Instance)
+    {\\r\\n            const targetObj = UnityEngine_1.GameObject.Find(\\\"BarriqueController\\\");\\r\\n           
+    if (targetObj) {\\r\\n                TS_BarriqueController.Instance = targetObj.GetComponent($typeof(TS_BarriqueController));\\r\\n           
+    }\\r\\n        }\\r\\n        return TS_BarriqueController.Instance;\\r\\n   
+    }\\r\\n    Start() {\\r\\n        this.barriqueObj = [];\\r\\n        this.CreateBarrique();\\r\\n   
+    }\\r\\n    // \uAC8C\uC784 \uC2DC\uC791 \uC804 \uBCA0\uB9AC\uC5B4 \uBBF8\uB9AC
+    \uC0DD\uC131\\r\\n    CreateBarrique() {\\r\\n        for (let index = 0; index
+    < this.MaxbarriqueNum; index++) {\\r\\n            let pos = new UnityEngine_1.Vector3(this.gameObject.transform.position.x
+    + (index * 2), this.gameObject.transform.position.y, this.gameObject.transform.position.z);\\r\\n           
+    let barrique = UnityEngine_1.GameObject.Instantiate(this.barriquePrefab);\\r\\n           
+    barrique.transform.position = pos;\\r\\n            this.barriqueObj.push(barrique);\\r\\n           
+    barrique.SetActive(false);\\r\\n        }\\r\\n    }\\r\\n    // \uBCA0\uB9AC\uC5B4
+    \uC778\uB371\uC2A4, \uC704\uCE58, \uD68C\uC804 \uAC12 \uC804\uB2EC\uBC1B\uC544\uC11C
+    \uC124\uCE58\uD558\uAE30\\r\\n    InstallBarrique(index, pos, rot) {\\r\\n       
+    this.barriqueObj[index].transform.position = pos;\\r\\n        this.barriqueObj[index].transform.rotation
+    = rot;\\r\\n        this.barriqueObj[index].SetActive(true);\\r\\n    }\\r\\n}\\r\\nexports.default
+    = TS_BarriqueController;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVFNfQmFycmlxdWVDb250cm9sbGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiVFNfQmFycmlxdWVDb250cm9sbGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsaURBQXFEO0FBQ3JELDZDQUFvRTtBQUNwRSxxREFBOEM7QUFFOUMsTUFBcUIscUJBQXNCLFNBQVEscUNBQXFCO0lBQXhFOztRQUlXLGdCQUFXLEdBQWtCLEVBQUUsQ0FBQyxDQUFDLGNBQWM7UUFDOUMsbUJBQWMsR0FBWSxFQUFFLENBQUMsQ0FBQyxZQUFZO0lBb0N0RCxDQUFDO0lBakNVLE1BQU0sQ0FBQyxXQUFXO1FBQ3JCLElBQUcsQ0FBQyxxQkFBcUIsQ0FBQyxRQUFRLEVBQUM7WUFDL0IsTUFBTSxTQUFTLEdBQUcsd0JBQVUsQ0FBQyxJQUFJLENBQUMsb0JBQW9CLENBQUMsQ0FBQztZQUN4RCxJQUFHLFNBQVMsRUFBQztnQkFDVCxxQkFBcUIsQ0FBQyxRQUFRLEdBQUcsU0FBUyxDQUFDLFlBQVksU0FBQyxxQkFBcUIsRUFBRyxDQUFDO2FBQ3BGO1NBQ0o7UUFDRCxPQUFPLHFCQUFxQixDQUFDLFFBQVEsQ0FBQztJQUMxQyxDQUFDO0lBRUQsS0FBSztRQUNELElBQUksQ0FBQyxXQUFXLEdBQUUsRUFBRSxDQUFDO1FBQ3JCLElBQUksQ0FBQyxjQUFjLEVBQUUsQ0FBQztJQUMxQixDQUFDO0lBRUQsb0JBQW9CO0lBQ3BCLGNBQWM7UUFDVixLQUFLLElBQUksS0FBSyxHQUFHLENBQUMsRUFBRSxLQUFLLEdBQUcsSUFBSSxDQUFDLGNBQWMsRUFBRSxLQUFLLEVBQUUsRUFBRTtZQUN0RCxJQUFJLEdBQUcsR0FBRyxJQUFJLHFCQUFPLENBQUMsSUFBSSxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsUUFBUSxDQUFDLENBQUMsR0FBRyxDQUFDLEtBQUssR0FBQyxDQUFDLENBQUMsRUFBRSxJQUFJLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxRQUFRLENBQUMsQ0FBQyxFQUFFLElBQUksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLFFBQVEsQ0FBQyxDQUFDLENBQUMsQ0FBQztZQUNwSixJQUFJLFFBQVEsR0FBZ0Isd0JBQVUsQ0FBQyxXQUFXLENBQWEsSUFBSSxDQUFDLGNBQWMsQ0FBQyxDQUFDO1lBQ3BGLFFBQVEsQ0FBQyxTQUFTLENBQUMsUUFBUSxHQUFHLEdBQUcsQ0FBQztZQUNsQyxJQUFJLENBQUMsV0FBVyxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUMsQ0FBQztZQUNoQyxRQUFRLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO1NBQzdCO0lBQ0wsQ0FBQztJQUVELCtCQUErQjtJQUMvQixlQUFlLENBQUMsS0FBYyxFQUFFLEdBQWEsRUFBRSxHQUFnQjtRQUUzRCxJQUFJLENBQUMsV0FBVyxDQUFDLEtBQUssQ0FBQyxDQUFDLFNBQVMsQ0FBQyxRQUFRLEdBQUcsR0FBRyxDQUFDO1FBQ2pELElBQUksQ0FBQyxXQUFXLENBQUMsS0FBSyxDQUFDLENBQUMsU0FBUyxDQUFDLFFBQVEsR0FBRyxHQUFHLENBQUM7UUFDakQsSUFBSSxDQUFDLFdBQVcsQ0FBQyxLQUFLLENBQUMsQ0FBQyxTQUFTLENBQUMsSUFBSSxDQUFDLENBQUM7SUFDNUMsQ0FBQztDQUNKO0FBekNELHdDQXlDQyJ9\",\"assetPath\":\"Assets/Script/Test/TS_BarriqueController.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"barriquePrefab\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"barriqueObj\",\"type\":\"UnityEngine.GameObject[]\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"TS_BarriqueController\",\"description\":\"\",\"hasAnimatorMove\":false},\"isCompiled\":true}"
+  typescriptHash: 1abe5501574097bdad855f77b86daefe
+  onlyWriteTrigger: 0
